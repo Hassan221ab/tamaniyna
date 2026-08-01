@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طَمأنينة</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <!-- رأس التطبيق / الوقت والتاريخ -->
+    <header class="card header-card">
+      <div class="top-bar">
+        <span id="current-time">--:--:--</span>
+        <span id="hijri-date">جاري التحميل...</span>
+      </div>
+      <h1>طَمأنينة</h1>
+    </header>
+
+    <!-- قسم مواقيت الصلاة -->
+    <section class="card">
+      <h2>مواقيت الصلاة (موقعك الحالي)</h2>
+      <div id="prayer-times-grid" class="prayer-grid">
+        <p class="placeholder">جاري تحديد الموقع وحساب الأوقات...</p>
+      </div>
+    </section>
+
+    <!-- قسم القرآن الكريم -->
+    <section class="card">
+      <h2>القرآن الكريم</h2>
+      <div class="quran-controls">
+        <select id="surah-select">
+          <option value="">اختر السورة...</option>
+        </select>
+        <select id="reader-select">
+          <option value="ar.alafasy">مشاري العفاسي</option>
+          <option value="ar.minshawi">محمد صديق المنشاوي</option>
+          <option value="ar.husary">محمود خليل الحصري</option>
+          <option value="ar.abdulbasitmurattal">عبد الباسط عبد الصمد</option>
+        </select>
+      </div>
+      
+      <!-- مشغل الصوت الافتراضي للمتصفح -->
+      <div class="audio-box" style="margin-top: 15px; text-align: center;">
+        <audio id="quran-audio" controls style="width: 100%;"></audio>
+        <p id="audio-status" style="font-size: 0.9rem; color: #666; margin-top: 5px;">جاهز للتشغيل</p>
+      </div>
+
+      <div id="surah-container" class="surah-text">
+        <p class="placeholder-text">اختر سورة للبدء بالقراءة والاستماع...</p>
+      </div>
+    </section>
+
+    <!-- قسم الحديث الشريف -->
+    <section class="card">
+      <h2>الحديث الشريف</h2>
+      <div id="hadith-container">
+        <p id="hadith-text" style="font-size: 1.1rem; line-height: 1.8;"></p>
+        <span id="hadith-info" style="display: block; margin-top: 10px; color: #2d6a4f; font-weight: bold;"></span>
+      </div>
+      <div class="hadith-footer" style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+        <button id="next-hadith-btn" class="btn">حديث آخر</button>
+        <div class="stars-rating">
+          <span class="star" data-value="1">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="5">★</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الأذكار -->
+    <section class="card">
+      <h2>أذكار المسلم</h2>
+      <div class="azkar-tabs" style="margin-bottom: 15px;">
+        <button id="sabah-btn" class="btn active">أذكار الصباح</button>
+        <button id="massa-btn" class="btn">أذكار المساء</button>
+      </div>
+      <div id="azkar-display"></div>
+    </section>
+
+    <!-- قسم الأدعية -->
+    <section class="card">
+      <h2>الأدعية النبوية والجامعة</h2>
+      <div class="dua-tabs" style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn tab-btn-dua active" data-type="rizq">الرزق والبركة</button>
+        <button class="btn tab-btn-dua" data-type="prophetic">أدعية نبوية</button>
+        <button class="btn tab-btn-dua" data-type="specific">أدعية متنوعة</button>
+      </div>
+      <div id="dua-display"></div>
+    </section>
+
+    <!-- قسم التواصل ودعم التطبيق -->
+    <div class="card support-card" style="text-align: center; background: #fff; padding: 24px; border-radius: 16px; margin-top: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      
+      <!-- زر مراسلة واتساب المباشر -->
+      <div style="margin-bottom: 20px;">
+        <h3 style="color: #2d6a4f; margin-bottom: 8px;">تواصل معنا</h3>
+        <p style="color: #666; font-size: 0.95rem; margin-bottom: 10px;">للاستفسارات والاقتراحات:</p>
+        <a href="https://wa.me/970599421652" target="_blank" class="btn" style="background: #25d366; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block;">
+          💬 مراسلة عبر واتساب: 0599421652
+        </a>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+      <!-- زر الدعم الأحمر البارز -->
+      <button onclick="toggleWalletBox()" class="btn-donate" style="display: inline-block; background: #e63946; color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3); transition: 0.3s;">
+        ادعم استمرارية "طَمأنينة" ❤️
+      </button>
+
+      <!-- صندوق محفظة العملات الرقمية -->
+      <div id="crypto-wallet-section" style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e2e8f0; text-align: right;">
+        <p style="color: #4a5568; font-size: 0.95rem; margin-bottom: 8px; text-align: center;">يمكنك التبرع عبر محفظة العملات الرقمية (USDT):</p>
+        
+        <div style="background: #fff; padding: 10px; border: 1px solid #cbd5e0; border-radius: 8px; direction: ltr; font-family: monospace; font-weight: bold; color: #2d3748; word-break: break-all; user-select: all; text-align: center;">
+          0x83E4F4512387eE9EFEdcC79B0AEF34Cb2405A827
+        </div>
+        <span style="display: block; font-size: 0.8rem; color: #718096; margin-top: 6px; text-align: center;">انقر لتحديد العنوان ونسخه</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // دالة إظهار وإخفاء صندوق المحفظة
+    function toggleWalletBox() {
+      const box = document.getElementById('crypto-wallet-section');
+      if (box.style.display === 'none' || box.style.display === '') {
+        box.style.display = 'block';
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    // تسجيل الـ Service Worker لتفعيل وضع العمل بدون إنترنت (Offline First)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => {
+            console.log('Service Worker مسجل بنجاح، النطاق:', reg.scope);
+          })
+          .catch((err) => {
+            console.error('فشل تسجيل Service Worker:', err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
