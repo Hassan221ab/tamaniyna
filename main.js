@@ -268,7 +268,47 @@ duaBtns.forEach(btn => {
     renderDua(e.target.getAttribute('data-type'));
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    getPrayerTimesAndHijri();
+    loadSurahList();
+    displayHadith(0);
+    renderAzkar('sabah');
+    renderDua('rizq');
 
+    // --- أضف كود عداد الزوار هنا ---
+    let visits = localStorage.getItem('visit_count');
+    if (!visits) {
+        visits = 1;
+    } else {
+        visits = Number(visits) + 1;
+    }
+    localStorage.setItem('visit_count', visits);
+    
+    const counterElement = document.getElementById('count');
+    if (counterElement) {
+        counterElement.innerText = visits;
+    }
+});
+// --- كود عداد المشرف الخاص بك وحدك ---
+document.addEventListener("DOMContentLoaded", function () {
+    let myVisits = localStorage.getItem('my_private_visits');
+    if (!myVisits) {
+        myVisits = 1;
+    } else {
+        myVisits = Number(myVisits) + 1;
+    }
+    localStorage.setItem('my_private_visits', myVisits);
+
+    const adminBox = document.getElementById('admin-counter-box');
+    const adminCount = document.getElementById('admin-count');
+
+    // يظهر العداد فقط إذا فتحت الرابط الخاص بالمشرف
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('admin') && adminBox && adminCount) {
+        adminBox.style.display = 'block';
+        adminCount.innerText = myVisits;
+    }
+});
 document.addEventListener('DOMContentLoaded', () => {
   getPrayerTimesAndHijri();
   loadSurahList();
@@ -276,16 +316,3 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAzkar('sabah');
   renderDua('rizq');
 });
-// كود عداد الزوار المجاني
-let visits = localStorage.getItem('visit_count');
-
-if (!visits) {
-    visits = 1;
-} else {
-    visits = Number(visits) + 1;
-}
-
-localStorage.setItem('visit_count', visits);
-
-// عرض الرقم في الصفحة
-document.getElementById('count').innerText = visits;
