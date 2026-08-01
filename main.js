@@ -276,3 +276,16 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAzkar('sabah');
   renderDua('rizq');
 });
+// كود عداد الزوار المجاني
+let visits = localStorage.getItem('visit_count');
+
+if (!visits) {
+    visits = 1;
+} else {
+    visits = Number(visits) + 1;
+}
+
+localStorage.setItem('visit_count', visits);
+
+// عرض الرقم في الصفحة
+document.getElementById('count').innerText = visits;
