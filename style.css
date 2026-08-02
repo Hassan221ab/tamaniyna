@@ -120,13 +120,3 @@ select {
 .star.active {
   color: #ecc94b;
 }
-.floating-support {
-  position: fixed !important;
-  left: 20px !important;       /* لجعل الزر على جهة اليسار، أو اكتب right: 20px إذا تريده على اليمين */
-  bottom: 20px !important;      /* تثبيته في أسفل الشاشة مرئياً دائماً */
-  z-index: 9999 !important;     /* لضمان ظهوره فوق كل محتوى الصفحة */
-  background-color: #ffffff !important;
-  padding: 10px 18px !important;
-  border-radius: 30px !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-}
