@@ -5,14 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>طَمأنينة | منصتك الروحية المتكاملة</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
+  <!-- شاشة الترحيب (Splash Screen) -->
+  <div id="splash-screen" class="splash-screen">
+      <div class="splash-content">
+          <h1>طَمأنينة</h1>
+          <p>ورتل القرآن ترتيلاً</p>
+          <div class="spinner"></div>
+      </div>
+  </div>
+
   <!-- شريط حالة الاتصال (Offline Banner) -->
-  <div id="offline-banner" class="offline-banner">
+  <div id="offline-banner" class="offline-banner" style="display: none;">
     ⚠️ أنت تعمل الآن في وضع عدم الاتصال (Offline) - التطبيق يعمل بكفاءة تامة.
   </div>
 
@@ -112,12 +121,20 @@
       </div>
     </section>
 
-    <!-- قسم الأذكار (موسوعة الصباح والمساء) -->
+    <!-- قسم الأربعون النووية (مضاف تكملةً للشمولية الروحية) -->
     <section class="card">
-      <h2>أذكار المسلم</h2>
+      <h2>الأربعون النووية</h2>
+      <div id="nawawi-container"></div>
+    </section>
+
+    <!-- قسم الأذكار (موسوعة الصباح والمساء وحصن المسلم) -->
+    <section class="card">
+      <h2>أذكار المسلم وحصن المسلم</h2>
       <div class="azkar-tabs">
         <button id="sabah-btn" class="btn active">أذكار الصباح</button>
         <button id="massa-btn" class="btn btn-secondary">أذكار المساء</button>
+        <button id="sleep-btn" class="btn btn-secondary">أذكار النوم</button>
+        <button id="distress-btn" class="btn btn-secondary">دعاء الكرب</button>
       </div>
       <div id="azkar-display"></div>
     </section>
@@ -144,6 +161,16 @@
 
         <button id="tasbih-reset" class="btn btn-muted">إعادة للصفر</button>
       </div>
+    </section>
+
+    <!-- قسم مفكرة الخواطر والتدبر (مضافة لتكامل الخواطر) -->
+    <section class="card">
+      <h2>مفكرة الخواطر والتدبر</h2>
+      <div class="notes-box" style="margin-bottom: 15px;">
+        <textarea id="user-note-input" placeholder="اكتب آية لامست قلبك، خاطرة، أو دعاء خاص بك..." style="width: 100%; height: 90px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: 'Tajawal', sans-serif; resize: vertical; box-sizing: border-box;"></textarea>
+        <button id="save-note-btn" class="btn" style="margin-top: 8px;">حفظ في المفكرة</button>
+      </div>
+      <div id="saved-notes-list"></div>
     </section>
 
     <!-- قسم بوصلة القبلة -->
@@ -209,6 +236,17 @@
       const box = document.getElementById('crypto-wallet-section');
       box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
     }
+
+    // إخفاء شاشة الترحيب بعد التحميل
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const splash = document.getElementById('splash-screen');
+            if(splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => splash.style.display = 'none', 500);
+            }
+        }, 1000);
+    });
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

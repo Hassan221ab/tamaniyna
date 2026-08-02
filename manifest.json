@@ -1,7 +1,7 @@
 {
-  "name": "طَمأنينة",
+  "name": "طَمأنينة - تطبيق إسلامي متكامل",
   "short_name": "طَمأنينة",
-  "description": "تطبيق إسلامي للقرآن ومواقيت الصلاة والأذكار والقبلة والمسبحة",
+  "description": "تطبيق إسلامي شامل للقرآن الكريم، مواقيت الصلاة، الأذكار، الأربعون النووية، بوصلة القبلة، والمسبحة الإلكترونية مع ميزة العمل دون إنترنت",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f4f7f6",
@@ -11,12 +11,14 @@
     {
       "src": "icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
