@@ -109,11 +109,7 @@
 
       <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
 
-      <!-- زر الدعم الأحمر البارز -->
-      <button onclick="toggleWalletBox()" class="btn-donate" style="display: inline-block; background: #e63946; color: white; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3); transition: 0.3s;">
-        ادعم استمرارية "طُمأنينة" ❤️
-      </button>
-
+   
       <!-- صندوق محفظة العملات الرقمية -->
       <div id="crypto-wallet-section" style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e2e8f0; text-align: right;">
         <p style="color: #4a5568; font-size: 0.95rem; margin-bottom: 8px; text-align: center;">يمكنك التبرع عبر محفظة العملات الرقمية (USDT):</p>
@@ -159,13 +155,16 @@
     }
   
   </script>
-  </script> <!-- تأكد أن السكربت يغلق هنا أولاً -->
 
     <footer style="text-align: center; margin-top: 30px; color: #666; font-size: 0.9rem;">
       <p>© 2026 تطبيق طُمأنينة. جميع الحقوق محفوظة.</p>
     </footer>
-
-  </div>
+<div class="floating-support">
+  <button onclick="toggleWalletBox()" style="background: none; border: none; cursor: pointer; font-weight: bold; color: #2e7d32; font-family: inherit;">
+    ❤️ ادعم استمرارية طمأنينة
+  </button>
+</div>
+  
 
 </body>
 </html>
