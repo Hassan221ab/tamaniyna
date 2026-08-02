@@ -157,7 +157,7 @@ const stars = document.querySelectorAll('.star');
 const hadithsList = [
   { text: "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: «إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ».", info: "رواه البخاري ومسلم" },
   { text: "عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: «مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ».", info: "رواه البخاري ومسلم" },
-  { text: "عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: «بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ».", info: "رواه البخاري ومسلم" }
+  { text: "عَنْ أَبِي عَبْدِ الرَّحْمَنِ عَبْدِ اللَّهِ بْنِ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: «بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ».", info: "رواه البخاري ومسلم" }
 ];
 
 let currentHadithIndex = 0;
@@ -268,51 +268,44 @@ duaBtns.forEach(btn => {
     renderDua(e.target.getAttribute('data-type'));
   });
 });
-document.addEventListener('DOMContentLoaded', () => {
-    getPrayerTimesAndHijri();
-    loadSurahList();
-    displayHadith(0);
-    renderAzkar('sabah');
-    renderDua('rizq');
 
-    // --- أضف كود عداد الزوار هنا ---
-    let visits = localStorage.getItem('visit_count');
-    if (!visits) {
-        visits = 1;
-    } else {
-        visits = Number(visits) + 1;
-    }
-    localStorage.setItem('visit_count', visits);
-    
-    const counterElement = document.getElementById('count');
-    if (counterElement) {
-        counterElement.innerText = visits;
-    }
-});
-// --- كود عداد المشرف الخاص بك وحدك ---
-document.addEventListener("DOMContentLoaded", function () {
-    let myVisits = localStorage.getItem('my_private_visits');
-    if (!myVisits) {
-        myVisits = 1;
-    } else {
-        myVisits = Number(myVisits) + 1;
-    }
-    localStorage.setItem('my_private_visits', myVisits);
-
-    const adminBox = document.getElementById('admin-counter-box');
-    const adminCount = document.getElementById('admin-count');
-
-    // يظهر العداد فقط إذا فتحت الرابط الخاص بالمشرف
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('admin') && adminBox && adminCount) {
-        adminBox.style.display = 'block';
-        adminCount.innerText = myVisits;
-    }
-});
+// تنفيذ الأحداث عند تحميل الصفحة بالكامل بشكل مدمج ومنظم
 document.addEventListener('DOMContentLoaded', () => {
   getPrayerTimesAndHijri();
   loadSurahList();
   displayHadith(0);
   renderAzkar('sabah');
   renderDua('rizq');
+
+  // عداد الزيارات العام
+  let visits = localStorage.getItem('visit_count');
+  if (!visits) {
+      visits = 1;
+  } else {
+      visits = Number(visits) + 1;
+  }
+  localStorage.setItem('visit_count', visits);
+  
+  const counterElement = document.getElementById('count');
+  if (counterElement) {
+      counterElement.innerText = visits;
+  }
+
+  // عداد المشرف الخاص بك وحدك
+  let myVisits = localStorage.getItem('my_private_visits');
+  if (!myVisits) {
+      myVisits = 1;
+  } else {
+      myVisits = Number(myVisits) + 1;
+  }
+  localStorage.setItem('my_private_visits', myVisits);
+
+  const adminBox = document.getElementById('admin-counter-box');
+  const adminCount = document.getElementById('admin-count');
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('admin') && adminBox && adminCount) {
+      adminBox.style.display = 'block';
+      adminCount.innerText = myVisits;
+  }
 });
