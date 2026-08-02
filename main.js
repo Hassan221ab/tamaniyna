@@ -717,3 +717,23 @@ function initVisitorCounter() {
     countSpan.textContent = visits;
   }
 }
+// دالة لجلب وعرض الأربعين النووية
+async function loadNawawiHadiths() {
+  const container = document.getElementById('hadith-container');
+  if (!container) return;
+
+  try {
+    container.innerHTML = `
+      <div class="hadith-card">
+        <p class="hadith-content">عَنْ أَمِيرِ المُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: "إِنَّمَا الأَعْمَالُ بِالنَّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى..."</p>
+        <span class="hadith-info">الحديث الأول - رواه البخاري ومسلم</span>
+      </div>
+    `;
+  } catch (error) {
+    console.error('خطأ في تحميل الأربعين النووية:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadNawawiHadiths();
+});
