@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tumanina-offline-v2';
+const CACHE_NAME = 'tumanina-offline-v3';
 const assetsToCache = [
   './index.html',
   './style.css',

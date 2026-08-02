@@ -3,33 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>طَمأنينة</title>
+  <title>طَمأنينة | منصتك الروحية المتكاملة</title>
   <link rel="stylesheet" href="style.css">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="icon.png">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
+  <!-- شريط حالة الاتصال (Offline Banner) -->
+  <div id="offline-banner" class="offline-banner">
+    ⚠️ أنت تعمل الآن في وضع عدم الاتصال (Offline) - التطبيق يعمل بكفاءة تامة.
+  </div>
+
   <div class="container">
-    <!-- رأس التطبيق / الوقت والتاريخ -->
+    <!-- رأس التطبيق المتطور -->
     <header class="card header-card">
       <div class="top-bar">
         <span id="current-time">--:--:--</span>
+        <button id="theme-toggle-btn" class="theme-btn">🌙 الوضع الداكن</button>
         <span id="hijri-date">جاري التحميل...</span>
       </div>
       <h1>طَمأنينة</h1>
+      <p class="header-subtitle">سكينة لقلبك، ورفيقك اليومي لذكر الله</p>
     </header>
 
-    <!-- قسم مواقيت الصلاة -->
+    <!-- آية اليوم الملهمة -->
+    <section class="card daily-verse-card">
+      <div class="card-header-flex">
+        <span class="badge-accent">✨ آية اليوم</span>
+        <span id="verse-ref" class="verse-ref">[سورة البقرة]</span>
+      </div>
+      <p id="verse-text" class="verse-text">"وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ"</p>
+    </section>
+
+    <!-- المساعد الروحي الذكي -->
+    <section class="card ai-companion-card">
+      <h2>🤖 المساعد الروحي الذكي</h2>
+      <p class="section-desc">اختر حالتك النفسية أو اطرح سؤالك ليرشدك التطبيق للآيات والأدعية المناسبة:</p>
+      <div class="ai-chips-container">
+        <button class="ai-chip" data-mood="قلق">😌 أشعر بالقلق والخوف</button>
+        <button class="ai-chip" data-mood="ضيق">🕊️ ضاق صدري وحزين</button>
+        <button class="ai-chip" data-mood="شكر">🤲 أريد أن أُعبر عن شكري</button>
+        <button class="ai-chip" data-mood="رزق">رزق وبحث عن البركة</button>
+      </div>
+      <div id="ai-response-box" class="ai-response-box" style="display: none;">
+        <p id="ai-response-text"></p>
+      </div>
+    </section>
+
+    <!-- قسم مواقيت الصلاة مع العد التنازلي -->
     <section class="card">
-      <h2>مواقيت الصلاة (موقعك الحالي)</h2>
+      <div class="card-header-flex">
+        <h2>مواقيت الصلاة</h2>
+        <span id="next-prayer-countdown" class="countdown-badge">الصلاة القادمة: جاري الحساب...</span>
+      </div>
       <div id="prayer-times-grid" class="prayer-grid">
         <p class="placeholder">جاري تحديد الموقع وحساب الأوقات...</p>
       </div>
     </section>
 
-    <!-- قسم القرآن الكريم -->
+    <!-- قسم القرآن الكريم وتتبع التقدم -->
     <section class="card">
       <h2>القرآن الكريم</h2>
       <div class="quran-controls">
@@ -44,10 +78,14 @@
         </select>
       </div>
       
-      <!-- مشغل الصوت الافتراضي للمتصفح -->
-      <div class="audio-box" style="margin-top: 15px; text-align: center;">
-        <audio id="quran-audio" controls style="width: 100%;"></audio>
-        <p id="audio-status" style="font-size: 0.9rem; color: #666; margin-top: 5px;">جاهز للتشغيل</p>
+      <div id="saved-progress-banner" class="progress-banner" style="display: none;">
+        <span id="progress-text">لديك حفظ سابقة عند الآية...</span>
+        <button id="resume-progress-btn" class="btn btn-sm">متابعة القراءة</button>
+      </div>
+
+      <div class="audio-box">
+        <audio id="quran-audio" controls class="custom-audio"></audio>
+        <p id="audio-status" class="audio-status">جاهز للتشغيل</p>
       </div>
 
       <div id="surah-container" class="surah-text">
@@ -55,14 +93,14 @@
       </div>
     </section>
 
-    <!-- قسم الحديث الشريف -->
+    <!-- قسم الحديث الشريف (موسع وكامل) -->
     <section class="card">
-      <h2>الحديث الشريف</h2>
+      <h2>الأحاديث النبوية الشريفة</h2>
       <div id="hadith-container">
-        <p id="hadith-text" style="font-size: 1.1rem; line-height: 1.8;"></p>
-        <span id="hadith-info" style="display: block; margin-top: 10px; color: #2d6a4f; font-weight: bold;"></span>
+        <p id="hadith-text" class="hadith-content">جاري تحميل الحديث الشريف...</p>
+        <span id="hadith-info" class="hadith-info"></span>
       </div>
-      <div class="hadith-footer" style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+      <div class="hadith-footer">
         <button id="next-hadith-btn" class="btn">حديث آخر</button>
         <div class="stars-rating">
           <span class="star" data-value="1">★</span>
@@ -74,92 +112,109 @@
       </div>
     </section>
 
-    <!-- قسم الأذكار -->
+    <!-- قسم الأذكار (موسوعة الصباح والمساء) -->
     <section class="card">
       <h2>أذكار المسلم</h2>
-      <div class="azkar-tabs" style="margin-bottom: 15px;">
+      <div class="azkar-tabs">
         <button id="sabah-btn" class="btn active">أذكار الصباح</button>
-        <button id="massa-btn" class="btn">أذكار المساء</button>
+        <button id="massa-btn" class="btn btn-secondary">أذكار المساء</button>
       </div>
       <div id="azkar-display"></div>
     </section>
 
-    <!-- قسم الأدعية -->
+    <!-- قسم عداد التسبيح الرقمي -->
+    <section class="card tasbih-card">
+      <h2>المسبحة الإلكترونية التفاعلية</h2>
+      <div class="tasbih-container">
+        <select id="tasbih-select" class="tasbih-select">
+          <option value="سُبْحَانَ اللَّهِ">سُبْحَانَ اللَّهِ</option>
+          <option value="الْحَمْدُ لِلَّهِ">الْحَمْدُ لِلَّهِ</option>
+          <option value="لَا إِلَهَ إِلَّا اللَّهُ">لَا إِلَهَ إِلَّا اللَّهُ</option>
+          <option value="اللَّهُ أَكْبَرُ">اللَّهُ أَكْبَرُ</option>
+          <option value="سُبْحَانَ اللَّهِ وَبِحَمْدِهِ">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</option>
+          <option value="أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</option>
+        </select>
+        
+        <div id="tasbih-display-text" class="tasbih-target-text">سُبْحَانَ اللَّهِ</div>
+        
+        <div id="tasbih-btn-circle" class="tasbih-circle">
+          <span id="tasbih-count">0</span>
+          <span class="tasbih-hint">انقر للتسبيح</span>
+        </div>
+
+        <button id="tasbih-reset" class="btn btn-muted">إعادة للصفر</button>
+      </div>
+    </section>
+
+    <!-- قسم بوصلة القبلة -->
+    <section class="card qibla-card">
+      <h2>اتجاه القبلة</h2>
+      <p class="section-desc">حدد اتجاه الكعبة المشرفة بناءً على موقعك الجغرافي بدقة</p>
+      
+      <div class="compass-wrapper">
+        <div id="qibla-arrow" class="compass-arrow">
+          <div class="compass-head"></div>
+        </div>
+        <span class="compass-center-label">الكعبة</span>
+      </div>
+      <p id="qibla-status" class="qibla-status">جاري حساب اتجاه القبلة...</p>
+    </section>
+
+    <!-- قسم الأدعية (موسوعة واسعة) -->
     <section class="card">
       <h2>الأدعية النبوية والجامعة</h2>
-      <div class="dua-tabs" style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+      <div class="dua-tabs">
         <button class="btn tab-btn-dua active" data-type="rizq">الرزق والبركة</button>
-        <button class="btn tab-btn-dua" data-type="prophetic">أدعية نبوية</button>
-        <button class="btn tab-btn-dua" data-type="specific">أدعية متنوعة</button>
+        <button class="btn tab-btn-dua btn-secondary" data-type="prophetic">أدعية نبوية</button>
+        <button class="btn tab-btn-dua btn-secondary" data-type="specific">أدعية متنوعة</button>
       </div>
       <div id="dua-display"></div>
     </section>
 
     <!-- قسم التواصل ودعم التطبيق -->
-    <div class="card support-card" style="text-align: center; background: #fff; padding: 24px; border-radius: 16px; margin-top: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-      
-      <!-- زر مراسلة واتساب المباشر -->
-      <div style="margin-bottom: 20px;">
-        <h3 style="color: #2d6a4f; margin-bottom: 8px;">تواصل معنا</h3>
-        <p style="color: #666; font-size: 0.95rem; margin-bottom: 10px;">للاستفسارات والاقتراحات:</p>
-        <a href="https://wa.me/970599421652" target="_blank" class="btn" style="background: #25d366; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block;">
+    <div class="card support-card">
+      <div>
+        <h3 class="support-title">تواصل معنا ودعم التطبيق</h3>
+        <p class="section-desc">للاستفسارات والاقتراحات، أو للمساهمة في استمرار التطوير:</p>
+        <a href="https://wa.me/970599421652" target="_blank" class="whatsapp-btn">
           💬 مراسلة عبر واتساب: 0599421652
         </a>
       </div>
 
-      <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+      <div class="support-divider"></div>
 
-      <!-- صندوق محفظة العملات الرقمية -->
-      <div id="crypto-wallet-section" style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e2e8f0; text-align: right;">
-        <p style="color: #4a5568; font-size: 0.95rem; margin-bottom: 8px; text-align: center;">يمكنك التبرع عبر محفظة العملات الرقمية (USDT):</p>
-        
-        <div style="background: #fff; padding: 10px; border: 1px solid #cbd5e0; border-radius: 8px; direction: ltr; font-family: monospace; font-weight: bold; color: #2d3748; word-break: break-all; user-select: all; text-align: center;">
+      <button onclick="toggleWalletBox()" class="crypto-toggle-btn">
+        ❤️ ادعم استمرارية طمأنينة (العملات الرقمية USDT)
+      </button>
+
+      <div id="crypto-wallet-section" class="crypto-wallet-box" style="display: none;">
+        <p class="wallet-label">عنوان محفظة USDT (TRC20):</p>
+        <div class="wallet-address">
           0x83E4F4512387eE9EFEdcC79B0AEF34Cb2405A827
         </div>
-        <span style="display: block; font-size: 0.8rem; color: #718096; margin-top: 6px; text-align: center;">انقر لتحديد العنوان ونسخه</span>
+        <span class="wallet-hint">انقر للتحديد والنسخ</span>
       </div>
-
     </div>
 
     <!-- عداد الزيارات -->
-    <div class="visitor-counter" style="text-align: center; margin-top: 15px; color: #666;">
-      <span>عدد الزيارات: </span><span id="count">0</span>
+    <div class="visitor-counter">
+      <span>عدد زيارات المنصة: </span><span id="count">0</span>
     </div>
 
   </div>
 
   <script src="main.js"></script>
   <script>
-    // دالة إظهار وإخفاء صندوق المحفظة
     function toggleWalletBox() {
       const box = document.getElementById('crypto-wallet-section');
-      if (box.style.display === 'none' || box.style.display === '') {
-        box.style.display = 'block';
-      } else {
-        box.style.display = 'none';
-      }
+      box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
     }
 
-    // تسجيل الـ Service Worker لتفعيل وضع العمل بدون إنترنت (Offline First)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then((reg) => {
-            console.log('Service Worker مسجل بنجاح، النطاق:', reg.scope);
-          })
-          .catch((err) => {
-            console.error('فشل تسجيل Service Worker:', err);
-          });
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
       });
     }
   </script>
-
-  <!-- زر ادعم استمرارية طمأنينة في مكانه الطبيعي المتحرك -->
-  <div style="text-align: center; margin: 20px 0;">
-    <button onclick="toggleWalletBox()" style="background: none; border: none; cursor: pointer; font-weight: bold; color: #2e7d32; font-family: inherit;">
-      ❤️ ادعم استمرارية طمأنينة
-    </button>
-  </div>
-
 </body>
 </html>
